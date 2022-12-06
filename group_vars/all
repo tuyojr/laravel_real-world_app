@@ -1,0 +1,18 @@
+domain: "tuyojr.me"
+ssl_email: "{{ vault_ssl_email }}"
+
+mysql_login_user: root
+mysql_root_password: password
+DB_NAME: db_name
+DB_USER: db_user
+USER_PASSWORD: user_password
+
+psql_user_name: jermaine
+psql_db_name: dreamville
+psql_login_password: "{{ vault_psql_login_password }}"
+psql_user_password: "{{ vault_psql_user_password }}"
+psql_config: /etc/postgresql/12/main/pg_hba.conf
+
+render_page: "Route::get('/', function () {
+              return view('welcome');
+              });"
