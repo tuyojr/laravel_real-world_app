@@ -1,0 +1,31 @@
+# sudo curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+- name: Download Composer Installer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/composer-setup.php
+    mode: 0755
+  tags: composer
+
+# sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+- name: Install composer
+  command: php composer-setup.php
+  args:
+    chdir: /tmp
+    creates: /usr/local/bin/composer
+  tags: composer
+
+- name: Move composer to a globally accessible location
+  command: mv /tmp/composer.phar /usr/local/bin/composer
+  args:
+    creates: /usr/local/bin/composer
+  tags: composer
+
+# composer create-project
+- name: Run composer create-project which installs all the dependencies
+  command:
+    cmd: composer create-project
+    chdir: /var/www/demoApp
+    creates: /var/www/demoApp/.env
+  environment:
+    COMPOSER_NO_INTERACTION: "1"
+  tags: create_project
