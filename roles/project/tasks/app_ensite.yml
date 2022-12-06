@@ -1,0 +1,20 @@
+# sudo a2ensite demoApp.conf
+- name: Enable Laravel Application Configurations To Display as Web Page
+  command: a2ensite demoApp.conf
+  tags: apache_config
+
+# Apache’s mod_rewrite module lets you rewrite URLs more cleanly, translating 
+# human-readable paths into code-friendly query strings. It also enables you to rewrite
+# URLs based on conditions. As done in our .htaccess file
+# sudo a2enmod rewrite
+- name: Enable Apache Rewrite Rules
+  apache2_module:
+    name: rewrite
+    state: present
+  tags: apache_config
+
+# sudo a2dissite 000-default.conf
+- name: Disable the default apache web page
+  command: a2dissite 000-default.conf
+  notify: Restart apache
+  tags: apache_config
