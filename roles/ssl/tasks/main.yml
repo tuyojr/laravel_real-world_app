@@ -1,0 +1,12 @@
+# We want to secure our site using SSL/TLS from Let's Encrypt
+- name: Install Certbot and any other dependency
+  apt:
+    name: python3-certbot-apache
+    state: present
+  tags: ssl
+
+- name: Install The SSL certificate on our domain, configure redirect to HTTPS and restart the Apache server
+  shell: certbot --apache --agree-tos --redirect -m '{{ ssl_email }}' -d '{{ domain }}'
+  args:
+    creates: /etc/apache2/sites-available/demoApp-le-ssl.conf
+  tags: ssl
