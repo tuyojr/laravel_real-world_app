@@ -1,0 +1,32 @@
+# sudo apt install php8.1 libapache2-mod-php8.1 php8.1-xmlrpc php8.1-cli -y
+  # sudo apt install php8.1-common php8.1-pgsql php8.1-mysql php8.1-zip php8.1-mbstring php8.1-imap -y
+  # sudo apt install php8.1-dev php8.1-imap php8.1-opcache php8.1-intl php8.1-bcmath -y
+- name: Add ondrej php repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    update_cache: yes
+  tags: php
+- name: Install PHP and other PHP Modules
+  apt:
+   pkg:
+    - php8.1
+    - libapache2-mod-php8.1
+    - php8.1-cli # command interpreter, useful for testing PHP scripts from a shell or performing general shell scripting tasks
+    - php8.1-curl # lets you make HTTP requests in PHP
+    - php8.1-xmlrpc
+    - php8.1-mysql # for working with MySQL databases
+    - php8.1-zip # for working with compressed files
+    - php8.1-common  # documentation, examples, and common modules for PHP
+    - php8.1-xml # for working with XML data
+    - php8.1-pgsql # for working with PostgreSQL databases
+    - php8.1-gd # for working with images
+    - php8.1-mbstring # used to manage non-ASCII strings
+    - php8.1-imagick
+    - php8.1-dev
+    - php8.1-imap 
+    - php8.1-opcache 
+    - php8.1-soap 
+    - php8.1-intl
+    - php8.1-bcmath # used when working with precision floats, Just in case lol.
+   state: present
+  tags: php
