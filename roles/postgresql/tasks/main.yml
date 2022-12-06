@@ -1,0 +1,13 @@
+# Set Up PostgreSQL with a Bash Script
+# sudo cp postgres_setup.sh /home/ubuntu
+- name: Copy script to remote host
+  template:
+    src: postgres_setup.sh.j2
+    dest: /home/ubuntu/postgres_setup.sh
+    mode: 0755
+  tags: postgresql
+
+# sh postgres_setup.sh
+- name: Run PostgreSQL Script to Install and configure it
+  shell: /home/ubuntu/postgres_setup.sh
+  tags: postgresql
