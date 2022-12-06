@@ -6,6 +6,7 @@
     repo: ppa:ondrej/php
     update_cache: yes
   tags: php
+  
 - name: Install PHP and other PHP Modules
   apt:
    pkg:
