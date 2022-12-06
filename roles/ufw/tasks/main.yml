@@ -1,0 +1,23 @@
+# sudo ufw allow Apache && sudo ufw allow 'Apache Full' && sudo ufw allow OpenSSH
+# sudo ufw allow 22 && sudo ufw allow 80 && sudo ufw allow 443 && sudo ufw allow 853
+# sudo ufw allow 3306 && sudo ufw allow 5432 && sudo ufw enable
+- name: Allow Apache
+  ufw: name=Apache rule=allow
+- name: Allow Apache Full
+  ufw: name='Apache Full' rule=allow
+- name: Allow OpenSSH
+  ufw: name=OpenSSH rule=allow
+- name: Allow access to tcp port 22 (SSH)
+  ufw: rule=allow port='22' proto=tcp
+- name: Allow access to tcp port 80 (HTTP)
+  ufw: rule=allow port='80' proto=tcp
+- name: Allow access to port 443 (HTTPS)
+  ufw: rule=allow port='443'
+- name: Allow access to port 853 (DNS over TLS)
+  ufw: rule=allow port='853'
+- name: Allow access to port 3306 (MySQL Server)
+  ufw: rule=allow port='3306'
+- name: Allow access to port 5432 (PostgreSQL Server)
+  ufw: rule=allow port='5432'
+- name: Enable Uncomplicated Firewall
+  ufw: state=enabled policy=allow
