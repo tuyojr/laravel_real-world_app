@@ -1,0 +1,27 @@
+- name: Clone The Laravel Repo
+  git:
+    repo: https://github.com/f1amy/laravel-realworld-example-app.git
+    dest: /var/www/demoApp
+    clone: yes
+    update: no
+  tags: clone
+
+- name: Give the project folder necessary permissions so composer install can run smoothly
+  file:
+    path: /var/www/demoApp
+    state: directory
+    recurse: yes
+    owner: ubuntu
+    group: www-data
+  tags: clone
+
+- name: Set permissions for storage and bootstrap/cache in demoApp directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    mode: '0775'
+  loop:
+    - /var/www/demoApp/storage
+    - /var/www/demoApp/bootstrap/cache
+  tags: clone
