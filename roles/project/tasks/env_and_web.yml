@@ -1,0 +1,25 @@
+# populate the .env file with the necessary values
+- name: Edit the .env file
+  lineinfile:
+    path: '{{ project_path }}/.env'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    state: present
+  loop:
+    - { regexp: '^APP_URL', line: 'APP_URL=http://{{ domain }}' }
+    - { regexp: '^DB_CONNECTION', line: 'DB_CONNECTION=mysql' }
+    - { regexp: '^DB_HOST', line: 'DB_HOST=localhost' }
+    - { regexp: '^DB_PORT', line: 'DB_PORT=3306' }
+    - { regexp: '^DB_DATABASE', line: 'DB_DATABASE={{ DB_NAME }}' }
+    - { regexp: '^DB_USERNAME', line: 'DB_USERNAME={{ DB_USER }}' }
+    - { regexp: '^DB_PASSWORD', line: 'DB_PASSWORD={{ USER_PASSWORD }}' }
+  tags: edit
+
+# edit the default render laravel page
+- name: Render the laravel landing page
+  lineinfile:
+    path: /var/www/demoApp/routes/web.php
+    regexp: '^\/\*Route[\s\S]+\*\/$'
+    line: "{{ render_page }}"
+    state: present
+  tags: render
