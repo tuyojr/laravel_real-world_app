@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+
+    ServerAlias {{ domain }}
+    ServerName {{ domain }}
+    ServerAdmin webmaster@{{ domain }}
+    DocumentRoot /var/www/demoApp/public
+
+    <Directory /var/www/demoApp/public>
+       AllowOverride All
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
