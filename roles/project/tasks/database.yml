@@ -1,0 +1,13 @@
+# PHP artisan commands to set our app key, migrate our database and give our app a little speed boost AGAIN!
+# By default, this command is run following a composer create-project
+- name: Set the App Key in your .env file    
+  command: php /var/www/demoApp/artisan key:generate
+- name: Give Application Speed Boost
+  command: php /var/www/demoApp/artisan config:cache
+- name: Install Our MySQL Database
+  command:
+    cmd: php artisan migrate --seed
+    chdir: /var/www/demoApp
+  notify: Restart mysql
+  ignore_errors: true
+  tags: migrate
