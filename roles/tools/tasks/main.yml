@@ -1,0 +1,18 @@
+# This play runs some very basic tasks, like installing git, wget, curl, setting the timezone...
+
+# Set the timezone
+- name: set timezone
+  timezone:
+    name: Africa/Lagos
+  
+# Install Some basic Applications that are very Important to ensure our deployment runs smooth
+# sudo apt install wget git curl python3 pip -y
+- name: Install 'wget', 'git', 'curl', 'python3', and 'pip'
+  apt:
+    pkg:
+    - wget
+    - git
+    - curl
+    - python3
+    - pip
+  tags: tools
