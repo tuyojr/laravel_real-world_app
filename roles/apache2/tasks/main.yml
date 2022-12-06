@@ -1,0 +1,26 @@
+# sudo apt install apache2 -y
+- name: Install Apache2
+  apt:
+    name: apache2
+    state: present
+  tags: apache2
+
+# sudo systemctl start apache2
+- name: Start Apache2 Service
+  service:
+    name: apache2
+    state: started
+  tags: apache2
+
+# sudo cp demoApp.conf /etc/apache2/sites-available/demoApp.conf
+# sudo chmod '0644' /etc/apache2/sites-available/demoApp.conf
+# sudo chown root:root /etc/apache2/sites-available/demoApp.conf
+- name: Create Our Application Configuration File That will display our page
+  template:
+    src: templates/demoApp.conf.j2
+    dest: /etc/apache2/sites-available/demoApp.conf
+    owner: root
+    group: root
+    mode: 0644
+    force: no
+  tags: apache2
