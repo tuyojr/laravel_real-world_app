@@ -1,5 +1,7 @@
 #
 
+I had to redo the project in a more industry standard manner after corrections were made by our instructor Valentine Madu (@OdogwuVal on github).
+
 ![Altschool Africa](https://github.com/tuyojr/cloudTasks/blob/main/logos/AltSchool.svg)
 
 ![automation](https://github.com/tuyojr/cloudTasks/blob/main/logos/automation.gif)
