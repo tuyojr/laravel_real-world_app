@@ -1,0 +1,3 @@
+- include_tasks: install.yml
+- include_tasks: secure_install.yml
+- include_tasks: user_and_db.yml
